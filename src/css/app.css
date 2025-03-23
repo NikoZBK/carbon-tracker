@@ -1,0 +1,838 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Border radius variables */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* Transition variables */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+
+  /* Material UI spacing system */
+  --spacing-unit: 8px;
+  --spacing-0: 0;
+  --spacing-1: var(--spacing-unit);
+  --spacing-2: calc(var(--spacing-unit) * 2);
+  --spacing-3: calc(var(--spacing-unit) * 3);
+  --spacing-4: calc(var(--spacing-unit) * 4);
+  --spacing-5: calc(var(--spacing-unit) * 5);
+  --spacing-6: calc(var(--spacing-unit) * 6);
+  --spacing-8: calc(var(--spacing-unit) * 8);
+  --spacing-10: calc(var(--spacing-unit) * 10);
+  --spacing-12: calc(var(--spacing-unit) * 12);
+
+  /* Material UI elevation shadows */
+  --elevation-0: none;
+  --elevation-1: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  --elevation-2: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  --elevation-3: 0 3px 3px -2px rgba(0, 0, 0, 0.2),
+    0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+  --elevation-4: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  --elevation-5: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
+
+  /* Accessibility focus outline */
+  --focus-outline-color: #1976d2;
+  --focus-outline-width: 2px;
+  --focus-outline-offset: 2px;
+
+  /* Touch target minimum size (Material Design spec) */
+  --min-touch-target: 48px;
+}
+
+/* Theme variables */
+@theme {
+  --color-theme: #f8f9fa;
+  --color-white: #ffffff;
+  --color-black: #212529;
+
+  /* Text colors */
+  --text-primary: #212529; /* Main text color */
+  --text-secondary: #495057; /* Secondary/lighter text */
+  --text-tertiary: #6c757d; /* Even lighter text for subtitles/captions */
+  --text-inverse: #ffffff; /* Text on colored backgrounds */
+  --text-accent: var(--color-primary); /* Accent text color */
+  --text-error: #dc3545; /* Error text */
+  --text-success: #198754; /* Success text */
+  --text-warning: #ffc107; /* Warning text */
+
+  /* Accent colors */
+  --color-primary: #0d6efd;
+  --color-primary-hover: #0b5ed7;
+  --color-secondary: #6c757d;
+  --color-secondary-hover: #5c636a;
+
+  /* Gray scale */
+  --color-light1: #f8f9fa;
+  --color-light2: #e9ecef;
+  --color-light3: #dee2e6;
+  --color-light4: #ced4da;
+  --color-light5: #adb5bd;
+  --color-dark1: #6c757d;
+  --color-dark2: #495057;
+  --color-dark3: #343a40;
+  --color-dark4: #212529;
+  --color-dark5: #0f172a;
+}
+
+/* Base styles */
+@layer base {
+  @variant dark {
+    --color-theme: #192133;
+    --color-white: #192133;
+    --color-black: #e5e7eb;
+
+    /* Text colors for dark mode */
+    --text-primary: #e5e7eb; /* Main text color in dark mode */
+    --text-secondary: #d1d5db; /* Secondary text in dark mode */
+    --text-tertiary: #9ca3af; /* Tertiary text in dark mode */
+    --text-inverse: #d1d2d4; /* Text on colored backgrounds in dark mode */
+    --text-accent: var(--color-primary); /* Accent text color */
+    --text-error: #f87171; /* Error text - lighter in dark mode */
+    --text-success: #34d399; /* Success text - lighter in dark mode */
+    --text-warning: #fbbf24; /* Warning text - lighter in dark mode */
+
+    /* Accent colors - slightly muted for dark mode */
+    --color-primary: #6366f1;
+    --color-primary-hover: #818cf8;
+    --color-secondary: #34d399;
+    --color-secondary-hover: #6ee7b7;
+
+    /* Inverted gray scale */
+    --color-light1: #111827;
+    --color-light2: #1f2937;
+    --color-light3: #374151;
+    --color-light4: #4b5563;
+    --color-light5: #6b7280;
+    --color-dark1: #9ca3af;
+    --color-dark2: #d1d5db;
+    --color-dark3: #e5e7eb;
+    --color-dark4: #f3f4f6;
+    --color-dark5: #f9fafb;
+
+    /* Dark mode elevation shadows */
+    --elevation-1: 0 2px 1px -1px rgba(255, 255, 255, 0.12),
+      0 1px 1px 0 rgba(255, 255, 255, 0.08),
+      0 1px 3px 0 rgba(255, 255, 255, 0.06);
+    --elevation-2: 0 3px 1px -2px rgba(255, 255, 255, 0.12),
+      0 2px 2px 0 rgba(255, 255, 255, 0.08),
+      0 1px 5px 0 rgba(255, 255, 255, 0.06);
+    --elevation-3: 0 3px 3px -2px rgba(255, 255, 255, 0.12),
+      0 3px 4px 0 rgba(255, 255, 255, 0.08),
+      0 1px 8px 0 rgba(255, 255, 255, 0.06);
+    --elevation-4: 0 2px 4px -1px rgba(255, 255, 255, 0.12),
+      0 4px 5px 0 rgba(255, 255, 255, 0.08),
+      0 1px 10px 0 rgba(255, 255, 255, 0.06);
+    --elevation-5: 0 3px 5px -1px rgba(255, 255, 255, 0.12),
+      0 5px 8px 0 rgba(255, 255, 255, 0.08),
+      0 1px 14px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  html {
+    @apply font-sans antialiased;
+    background-color: var(--color-theme);
+    color: var(--text-primary);
+    transition: background-color var(--transition-normal),
+      color var(--transition-normal);
+  }
+
+  body {
+    @apply m-0 min-h-screen relative;
+    transition: var(--color-primary-transition);
+  }
+
+  /* All elements with color properties should transition smoothly */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+  }
+
+  /* Accessibility focus styles */
+  :focus-visible {
+    outline: var(--focus-outline-width) solid var(--focus-outline-color);
+    outline-offset: var(--focus-outline-offset);
+  }
+
+  /* Skip navigation link for keyboard users */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: 8px;
+    z-index: 1000;
+    transition: top 0.2s;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* Disable transitions for elements that shouldn't animate */
+  .no-transition,
+  .no-transition *,
+  .no-transition *::before,
+  .no-transition *::after {
+    transition: none !important;
+  }
+
+  /* Base typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-primary);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.5em;
+  }
+
+  h1 {
+    font-size: 1.875rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+  }
+
+  p {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  select {
+    @apply max-w-fit p-2 border border-light3 rounded-md bg-white;
+  }
+}
+
+/* Material UI elevation utility classes */
+.elevation-0 {
+  box-shadow: var(--elevation-0);
+}
+
+.elevation-1 {
+  box-shadow: var(--elevation-1);
+}
+
+.elevation-2 {
+  box-shadow: var(--elevation-2);
+}
+
+.elevation-3 {
+  box-shadow: var(--elevation-3);
+}
+
+.elevation-4 {
+  box-shadow: var(--elevation-4);
+}
+
+.elevation-5 {
+  box-shadow: var(--elevation-5);
+}
+
+/* Touch target utility classes */
+.touch-target {
+  min-width: var(--min-touch-target);
+  min-height: var(--min-touch-target);
+}
+
+/* Mobile utility classes */
+.hide-on-mobile {
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+.show-on-mobile {
+  display: none !important;
+  @media (max-width: 767px) {
+    display: block !important;
+  }
+}
+
+.mobile-full-width {
+  @media (max-width: 767px) {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+.mobile-stack {
+  @media (max-width: 767px) {
+    flex-direction: column !important;
+  }
+}
+
+.mobile-center {
+  @media (max-width: 767px) {
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+
+.mobile-p-0 {
+  @media (max-width: 767px) {
+    padding: 0 !important;
+  }
+}
+
+.mobile-p-1 {
+  @media (max-width: 767px) {
+    padding: var(--spacing-1) !important;
+  }
+}
+
+.mobile-p-2 {
+  @media (max-width: 767px) {
+    padding: var(--spacing-2) !important;
+  }
+}
+
+.mobile-m-0 {
+  @media (max-width: 767px) {
+    margin: 0 !important;
+  }
+}
+
+.mobile-text-sm {
+  @media (max-width: 767px) {
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Typography utility classes */
+.text-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.text-subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.text-settings-title {
+  @apply text-lg font-semibold mb-0 mt-2;
+}
+.text-body {
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.text-caption {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.text-small {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+
+.text-accent {
+  color: var(--text-accent);
+}
+
+.text-error {
+  color: var(--text-error);
+}
+
+.text-success {
+  color: var(--text-success);
+}
+
+.text-warning {
+  color: var(--text-warning);
+}
+
+.text-muted {
+  color: var(--text-tertiary);
+}
+
+/* Existing component styles continue below */
+@layer components {
+  /* Layout grid components */
+  .app-grid {
+    display: grid;
+    grid-template-areas:
+      'header header header'
+      'menu main main'
+      'footer footer footer';
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: minmax(250px, max-content) 1fr;
+    height: 100vh;
+    background-color: var(--color-theme);
+    transition: background-color var(--transition-normal);
+    overflow: hidden;
+    transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media (max-width: 767px) {
+      grid-template-areas:
+        'header header'
+        'main main'
+        'footer footer';
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr auto;
+    }
+  }
+
+  .app-header {
+    grid-area: header;
+    background-color: var(--color-light1);
+    border-bottom: 1px solid var(--color-light3);
+    box-shadow: var(--elevation-1);
+    transition: background-color var(--transition-normal),
+      border-color var(--transition-normal);
+
+    @media (max-width: 767px) {
+      padding: var(--spacing-2);
+    }
+  }
+
+  .app-title {
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+    transition: color var(--transition-normal);
+    display: inline-block;
+  }
+
+  .app-menu {
+    grid-area: menu;
+    background-color: var(--color-light2);
+    border-right: 1px solid var(--color-light3);
+    transition: background-color var(--transition-normal),
+      border-color var(--transition-normal);
+  }
+
+  .app-main {
+    grid-area: main;
+    overflow-y: auto;
+    height: 100%;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-footer {
+    grid-area: footer;
+    background-color: var(--color-light1);
+    border-top: 1px solid var(--color-light3);
+    transition: background-color var(--transition-normal),
+      border-color var(--transition-normal);
+  }
+
+  .card {
+    @apply rounded-lg px-6 py-8 m-0 mb-6 bg-theme border-3 border-light2;
+    transition: background-color var(--transition-normal),
+      border-color var(--transition-normal), box-shadow var(--transition-normal);
+    color: var(--text-primary);
+    box-shadow: var(--elevation-1);
+
+    @media (max-width: 767px) {
+      padding: var(--spacing-4);
+      margin-bottom: var(--spacing-4);
+    }
+
+    &:hover {
+      box-shadow: var(--elevation-2);
+    }
+  }
+
+  /* Menu component styles */
+  [class^='menu-vertical-'],
+  [class^='menu-horizontal-'] {
+    @apply flex justify-start items-start gap-3 p-4 rounded-md;
+    background-color: var(--color-light2);
+    border-right: 1px solid var(--color-light3);
+    transition: background-color var(--transition-normal),
+      border-color var(--transition-normal);
+
+    & .link {
+      @apply block w-full px-4 py-3 
+             transition-all duration-200 rounded-md;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      border-left: 3px solid transparent;
+      transition: background-color var(--transition-normal),
+        color var(--transition-normal),
+        border-left-color var(--transition-normal);
+    }
+
+    & .link:hover {
+      background-color: var(--color-light3);
+      color: var(--color-primary);
+      border-left-color: var(--color-primary);
+    }
+
+    & .link.active {
+      background-color: var(--color-primary);
+      color: var(--text-inverse);
+      border-left-color: var(--color-primary-hover);
+    }
+  }
+
+  [class^='menu-vertical-'] {
+    @apply flex-col w-full;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      padding 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 250px;
+    overflow: hidden;
+  }
+
+  [class^='menu-horizontal-'] {
+    @apply flex-row items-center;
+  }
+
+  /* Theme toggle styles */
+  .theme-toggle {
+    @apply rounded-md px-3 py-1 ml-auto;
+  }
+
+  .theme-toggle select {
+    @apply rounded-md px-3 py-2 border border-light3 bg-theme;
+    transition: all var(--transition-fast),
+      background-color var(--transition-normal), color var(--transition-normal);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1.5em 1.5em;
+    cursor: pointer;
+  }
+
+  .theme-toggle select:hover {
+    border-color: var(--color-primary);
+  }
+
+  /* Utility components */
+  .styled-list {
+    @apply pl-5 py-2 space-y-2 list-none text-sm;
+
+    & li {
+      @apply flex items-center;
+      position: relative;
+      color: var(--text-primary);
+
+      &::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        @apply bg-primary rounded-full absolute -left-4;
+        margin-top: 1px;
+      }
+    }
+  }
+
+  /* Color picker styles */
+  .color-picker {
+    @apply flex gap-2 items-center ml-4;
+  }
+
+  .color-option {
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: transform var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .color-option:hover {
+    transform: scale(1.15);
+  }
+
+  .color-option.active {
+    transform: scale(1.15);
+  }
+
+  /* Menu toggle and collapsed menu styles */
+  .menu-toggle {
+    @apply flex items-center justify-center p-2 rounded-md;
+    color: var(--text-primary);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-fast),
+      color var(--transition-fast);
+  }
+
+  .menu-toggle:hover {
+    color: var(--color-primary);
+    background-color: var(--color-light3);
+  }
+
+  .menu-toggle-icon {
+    transition: transform var(--transition-normal);
+  }
+
+  [class^='menu-vertical-'].collapsed .menu-toggle-icon {
+    transform: rotate(90deg);
+  }
+
+  .menu-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-light3);
+  }
+
+  .menu-items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .app-grid {
+    transition: grid-template-columns 0.3s ease-in-out;
+  }
+
+  .app-grid.menu-collapsed {
+    grid-template-columns: 60px 1fr;
+  }
+
+  [class^='menu-vertical-'] {
+    transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
+    width: 250px;
+    overflow: hidden;
+  }
+
+  [class^='menu-vertical-'].collapsed {
+    width: 60px;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  [class^='menu-vertical-'].collapsed .menu-header {
+    justify-content: center;
+  }
+
+  [class^='menu-vertical-'].collapsed .link {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  [class^='menu-vertical-'].collapsed .link.active {
+    background-color: transparent;
+    color: var(--color-primary);
+    border-left-color: transparent;
+    transition: background-color 0.1s ease-out, color 0.1s ease-out,
+      border-left-color 0.1s ease-out;
+  }
+
+  [class^='menu-vertical-'].collapsed .link span {
+    opacity: 0;
+    width: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.2s ease-out, width 0.2s ease-out,
+      transform 0.2s ease-out;
+    display: none;
+  }
+
+  [class^='menu-vertical-'] .link span {
+    opacity: 1;
+    transition: opacity 0.3s ease-in, width 0.3s ease-in, transform 0.3s ease-in;
+    transform: translateX(0);
+    display: inline;
+  }
+
+  /* Mobile menu for small screens */
+  .mobile-menu-overlay {
+    display: none;
+
+    @media (max-width: 767px) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  .mobile-menu {
+    display: none;
+
+    @media (max-width: 767px) {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background-color: var(--color-light1);
+      z-index: 101;
+      transition: left 0.3s ease;
+      box-shadow: var(--elevation-4);
+      overflow-y: auto;
+    }
+
+    &.active {
+      left: 0;
+    }
+  }
+}
+/* Hidden emoji that appears on selection in the About page*/
+.easter-egg {
+  color: transparent;
+  user-select: all;
+}
+
+.easter-egg::selection {
+  color: var(--color-primary);
+}
+.easter-egg {
+  transition: transform 0.5s ease-out, color 0.5s ease-out;
+  display: inline-block;
+  position: relative;
+}
+
+.easter-egg:hover {
+  color: var(--color-primary);
+  transform: scale(8);
+  transition: transform 5s ease-in-out, color 0.3s ease-in;
+  z-index: 100;
+}
+
+/* Add consistent transitions to interactive elements */
+button,
+a,
+input[type='button'],
+input[type='submit'],
+input[type='reset'],
+select {
+  transition-property: background-color, border-color, color, transform,
+    box-shadow;
+  transition-duration: var(--transition-normal);
+  transition-timing-function: ease;
+}
+
+/* Ensure svg elements inside buttons transition properly */
+button svg,
+a svg {
+  transition: transform var(--transition-normal), fill var(--transition-normal),
+    stroke var(--transition-normal);
+}
+
+/* Inputs should have smooth transitions */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='date'],
+input[type='number'],
+textarea,
+select {
+  transition: border-color var(--transition-normal),
+    box-shadow var(--transition-normal),
+    background-color var(--transition-normal);
+}
+
+/* Custom Scrollbar Styles */
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-light2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 4px;
+  border: 2px solid var(--color-light2);
+  transition: background-color var(--transition-normal);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Firefox */
+* {
+  scrollbar-color: var(--color-primary) var(--color-light2);
+  scrollbar-width: thin;
+}
+
+/* When in dark mode, adjust scrollbar colors accordingly */
+@variant dark {
+  ::-webkit-scrollbar-track {
+    background: var(--color-light1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-color: var(--color-light1);
+  }
+
+  * {
+    scrollbar-color: var(--color-primary) var(--color-light1);
+  }
+}

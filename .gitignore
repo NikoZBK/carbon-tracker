@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+owid-co2-data.csv
+owid-co2-data.json
