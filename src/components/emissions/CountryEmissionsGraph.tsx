@@ -4,13 +4,13 @@ import CountrySelector from './CountrySelector';
 import YearRangeSelector from './YearRangeSelector';
 import EmissionsStatistics from './EmissionsStatistics';
 import EmissionsChart from './EmissionsChart';
+import { useEmissions } from '../../hooks/useEmissions';
 import {
-  useEmissions,
   getCountryData,
   getAvailableYears,
   filterDataByYearRange,
   calculateStatistics,
-} from '../../contexts/EmissionsContext';
+} from '../../utils/emissionsUtils';
 
 interface CountryEmissionsGraphProps {
   className?: string;

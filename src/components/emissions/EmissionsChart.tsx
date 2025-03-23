@@ -10,7 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { EmissionsData } from '../../contexts/EmissionsContext';
+import { EmissionsData } from '../../contexts/EmissionsContextDef';
 
 // Register Chart.js components
 ChartJS.register(

@@ -1,43 +1,19 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-} from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { getAvailableCountries } from '../utils/countryData';
-
-export interface EmissionsData {
-  country: string;
-  year: number;
-  totalEmissions: number;
-  perCapitaEmissions: number;
-}
-
-interface CountriesData {
-  [country: string]: EmissionsData[];
-}
-
-interface EmissionsContextType {
-  countryList: string[];
-  allCountriesData: CountriesData;
-  loading: boolean;
-  error: string | null;
-  loaded: boolean;
-}
-
-const initialState: EmissionsContextType = {
-  countryList: [],
-  allCountriesData: {},
-  loading: true,
-  error: null,
-  loaded: false,
-};
-
-const EmissionsContext = createContext<EmissionsContextType>(initialState);
+import {
+  EmissionsContext,
+  CountriesData,
+  EmissionsContextType,
+} from './EmissionsContextDef';
 
 export function EmissionsProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<EmissionsContextType>(initialState);
+  const [state, setState] = useState<EmissionsContextType>({
+    countryList: [],
+    allCountriesData: {},
+    loading: true,
+    error: null,
+    loaded: false,
+  });
 
   useEffect(() => {
     const loadAllCountriesData = async () => {
@@ -113,53 +89,4 @@ export function EmissionsProvider({ children }: { children: ReactNode }) {
       {children}
     </EmissionsContext.Provider>
   );
-}
-
-export function useEmissions() {
-  const context = useContext(EmissionsContext);
-  if (!context) {
-    throw new Error('useEmissions must be used within an EmissionsProvider');
-  }
-  return context;
-}
-
-// Utility functions for working with emissions data
-export function getCountryData(
-  allCountriesData: CountriesData,
-  country: string
-): EmissionsData[] {
-  return allCountriesData[country] || [];
-}
-
-export function getAvailableYears(
-  allCountriesData: CountriesData,
-  country: string
-): number[] {
-  const countryData = allCountriesData[country] || [];
-  const years = countryData.map(d => d.year);
-  return [...new Set(years)].sort((a, b) => a - b);
-}
-
-export function filterDataByYearRange(
-  data: EmissionsData[],
-  startYear: number,
-  endYear: number
-): EmissionsData[] {
-  return data.filter(d => d.year >= startYear && d.year <= endYear);
-}
-
-export function calculateStatistics(filteredData: EmissionsData[]) {
-  const averageTotalEmissions =
-    filteredData.length > 0
-      ? filteredData.reduce((sum, d) => sum + d.totalEmissions, 0) /
-        filteredData.length
-      : 0;
-
-  const averagePerCapita =
-    filteredData.length > 0
-      ? filteredData.reduce((sum, d) => sum + d.perCapitaEmissions, 0) /
-        filteredData.length
-      : 0;
-
-  return { averageTotalEmissions, averagePerCapita };
 }
