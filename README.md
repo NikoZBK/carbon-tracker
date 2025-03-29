@@ -1,6 +1,12 @@
+
+## Note
+
+- This app is for demonstration purposes only.
+
+  
 # Carbon Footprint Tracker
 
-A web application to help individuals and organizations track and reduce their carbon footprint. This app allows users to monitor their daily activities and understand their environmental impact through visualizations and personalized recommendations.
+A simple carbon footprint tracker help that can help individuals and organizations track and reduce their carbon footprint. This app allows users to monitor their daily activities and understand their environmental impact through charts and visualizations.
 
 ## Features
 
@@ -15,9 +21,6 @@ A web application to help individuals and organizations track and reduce their c
 - React 19
 - TypeScript
 - Vite
-- TailwindCSS
-- Chart.js / Recharts for data visualization
-- React Router for navigation
 
 ## Getting Started
 
@@ -32,7 +35,8 @@ A web application to help individuals and organizations track and reduce their c
 
    ```
    git clone <repository-url>
-   cd carbon-tracker-redo
+
+   cd carbon-tracker
    ```
 
 2. Install dependencies
@@ -59,6 +63,6 @@ npm run build
 
 The build files will be created in the `dist` directory and can be served by any static web server.
 
-## License
 
-This project is licensed under the MIT License.
+## Data Sources
+  - Our World in Data: https://ourworldindata.org/co2-dataset-sources
