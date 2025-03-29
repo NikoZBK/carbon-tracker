@@ -6,9 +6,18 @@
   
 # Carbon Footprint Tracker
 
+![carbon-tracker_home_light_expanded](https://github.com/user-attachments/assets/a6dd19a4-f7e4-46c8-87ef-7757383a2444)
+
+![carbon-tracker_analytics_dark_expanded](https://github.com/user-attachments/assets/ae5765e1-e5c4-4ec6-8000-33ece9bdd52a)
+
+![carbon-tracker_analytics_us_comparison_dark_expanded](https://github.com/user-attachments/assets/9b418f4c-c13f-4302-aead-dfd933f534c4)
+
+
+
 A simple carbon footprint tracker help that can help individuals and organizations track and reduce their carbon footprint. This app allows users to monitor their daily activities and understand their environmental impact through charts and visualizations.
 
 ## Features
+
 
 - Track daily carbon emissions from various activities (Activity Logging)
 - Visualize your environmental impact over time with interactive charts (Data Visualization)
