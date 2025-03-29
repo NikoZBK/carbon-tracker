@@ -49,11 +49,6 @@ function AppContent() {
 
   return (
     <div className={`app-grid ${isCollapsed ? 'menu-collapsed' : ''}`}>
-      {/* Skip navigation link for accessibility */}
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
-
       <Header className="app-header">
         <div className="flex justify-items-normal items-center p-4">
           {isMobile && (
