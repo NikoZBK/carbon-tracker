@@ -8,8 +8,6 @@
 
 A simple carbon footprint tracker help that can help individuals and organizations track and reduce their carbon footprint. This app allows users to monitor their daily activities and understand their environmental impact through charts and visualizations.
 
-
-
 ## Features
 
 - Track daily carbon emissions from various activities (Activity Logging)
@@ -23,7 +21,6 @@ A simple carbon footprint tracker help that can help individuals and organizatio
 - React 19
 - TypeScript
 - Vite
-- TailwindCSS 4
 
 ## Getting Started
 
@@ -38,6 +35,7 @@ A simple carbon footprint tracker help that can help individuals and organizatio
 
    ```
    git clone <repository-url>
+
    cd carbon-tracker
    ```
 
@@ -65,6 +63,6 @@ npm run build
 
 The build files will be created in the `dist` directory and can be served by any static web server.
 
+
 ## Data Sources
   - Our World in Data: https://ourworldindata.org/co2-dataset-sources
-
